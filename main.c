@@ -14,7 +14,7 @@ void	main()
 			 {0,1,1,1,1,1,0},
 			 {1,1,1,1,1,1,1}};
   //Debut jeu
-  printf("\n##START##\n");
+  my_putstr("\n##START##\n");
   display(plateau);
   ask(plateau);
   display(plateau);
@@ -28,24 +28,24 @@ void	display(int plateau[4][7])
   int n; //numero
   
   l = 0;
-  printf("*********\n");
+  my_putstr("*********\n");
   while(l < 4)
     {
       n = 0;
-      printf("*");
+      my_putchar('*');
       while(n < 7)
 	{
 	  if (plateau[l][n]==0)
-	    printf(" ");
+	    my_putchar(' ');
 	  if (plateau[l][n]==1)
-	    printf("I");
+	    my_putchar('I');
 	  n++;
 	}
-      printf("*");
-      printf("\n");
+      my_putchar('*');
+      my_putchar('\n');
       l++;
     }
-  printf("*********");
+  my_putstr("*********");
 }
 
 void	ask(int plateau[4][7])
@@ -53,8 +53,8 @@ void	ask(int plateau[4][7])
   int	l;
   int	n;
   
-  printf("\nQuelle ligne\n");
-  printf("\nCombien\n");
+  my_putstr("\nQuelle ligne\n");
+  my_putstr("\nCombien\n");
   l = 3;
   n = 4;
   l = l-1;
