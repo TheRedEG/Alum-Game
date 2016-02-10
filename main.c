@@ -16,6 +16,9 @@ void	main()
   //Debut jeu
   printf("\n##START##\n");
   display(plateau);
+  ask(plateau);
+  display(plateau);
+  
   
 }
 
@@ -45,7 +48,16 @@ void	display(int plateau[4][7])
   printf("*********");
 }
 
-void	ask()
+void	ask(int plateau[4][7])
 {
-
+  int	l;
+  int	n;
+  
+  printf("\nQuelle ligne\n");
+  printf("\nCombien\n");
+  l = 3;
+  n = 4;
+  l = l-1;
+  n = n-1;
+  plateau[l][n]=0;
 }
