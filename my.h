@@ -13,8 +13,8 @@ void		my_error(char *str);
 typedef struct game game;
 struct game
 {
-  char	name[100];
-  int	*plateau[16]
+  int	plateau[4][7];
+  //Debut jeu
 };
 
 #endif

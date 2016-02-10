@@ -3,71 +3,49 @@
 void	main()
 {
   int	i;
+  int	x;
   int	end;
   
   i = 0;
-  struct game game;
-  while (i < 16)
-    {
-      game.plateau[i]=1;
-      i++;
-    }
-  while (end != 1)
-    {
-      display(&game);
-      ask(&game);
-      display(&game);
-    }
+  x = 1;
+  //Creation plateau
+  int	plateau[4][7] = {{0,0,0,1,0,0,0},
+			 {0,0,1,1,1,0,0},
+			 {0,1,1,1,1,1,0},
+			 {1,1,1,1,1,1,1}};
+  //Debut jeu
+  printf("\n##START##\n");
+  display(plateau);
   
 }
 
-void	display(game *game)
+void	display(int plateau[4][7])
 {
-  int	i;
-
-  i = 0;
-   printf("************\n");
-  while (i < 16)
-    {
-      //Placement pyramide
-       if (i == 0)
-	printf("*    ");
-      if (i == 1)
-	printf("*   ");
-      if (i == 4)
-	printf("*  ");
-      if (i == 9)
-	printf("* ");
-      //Supression d'alum
-      if (game->plateau[i] == 1)
-	printf("I");
-      if (game->plateau[i] == 0)
-	printf(" ");
-      //Placement pyramide
-      if (i == 0 || i == 3 || i == 8)
-	printf("\n");
-      i++; 
-    }
-   printf("\n***********\n\n"); 
-}
-  void	ask(game *game)
-  {
-  int	line;
-  int	num;
-
-  // printf("\nQuelle ligne ?\n");
-  //scanf(" %d", &line);
-  printf("\nCombien ?");
-  scanf(" %d", &num);
-  if(num == 2)
-    game->plateau[num] = 0;
-  }
-/*
-void	newask(game *game)
-{
-game->plateau[1]=0;
-printf("new ask result \n");
-  display(game);
+  int l; //ligne
+  int n; //numero
   
+  l = 0;
+  printf("*********\n");
+  while(l < 4)
+    {
+      n = 0;
+      printf("*");
+      while(n < 7)
+	{
+	  if (plateau[l][n]==0)
+	    printf(" ");
+	  if (plateau[l][n]==1)
+	    printf("I");
+	  n++;
+	}
+      printf("*");
+      printf("\n");
+      l++;
+    }
+  printf("*********");
 }
-*/
+
+void	ask()
+{
+
+}
