@@ -21,7 +21,10 @@ void	main()
       ask(plateau);
       display(plateau);
       result(plateau);
-      //end=1;
+      ia(plateau);
+      display(plateau);
+      result(plateau);
+	//end=1;
     }
 }
 
@@ -107,4 +110,31 @@ void	result(int plateau[4][7])
     printf("\n\n##FIN!##\n\n");
     return EXIT_SUCCESS;
     }
+}
+
+void	ia(int plateau[4][7])
+{
+  int	l;
+  int	n;
+  
+  my_putstr("\nA l'IA de jouer !\n");
+  l = 4;
+  l = l-1;
+  n = 3;
+  
+  int i;
+  
+  i=0;
+  while(n>0)
+    {
+      if (plateau[l][i]==0)
+	i++;
+      if (plateau[l][i]==1)
+	{
+	  plateau[l][i]=0;
+	  i++;
+	  n--;
+	}
+    }
+  
 }

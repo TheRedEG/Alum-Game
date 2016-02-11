@@ -4,8 +4,7 @@ CC=		gcc -g -W -Wall -Wextra
 RM=		rm -rfv
 
 SRC=		main.c \
-		basics.c \
-		my_getnbr.c
+		basics.c
 
 OBJ		= $(SRC:.c=.o
 
