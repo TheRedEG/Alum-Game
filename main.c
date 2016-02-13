@@ -2,10 +2,12 @@
 
 void	main()
 {
-  int	i;
-  int	x;
-  int	*end;
-  
+  int		i;
+  int		x;
+  int		*end;
+  int		*buf;
+
+  buf = 1;
   i = 0;
   x = 1;
   //Creation plateau
@@ -20,12 +22,15 @@ void	main()
     {
       ask(plateau);
       display(plateau);
-      result(plateau);
-      ia(plateau);
-      display(plateau);
-      result(plateau);
-	//end=1;
+      result(&end,plateau);
+      if (end != 1)
+	{
+	  IA_Play(&buf,plateau);
+	  display(plateau);
+	  result(&end,plateau);
+	}
     }
+  my_putstr("##The End!##");
 }
 
 void	display(int plateau[4][7])
@@ -71,6 +76,8 @@ void	ask(int plateau[4][7])
   i=0;
   while(n>0)
     {
+      if (n == 42)
+	n = 0;
       if (plateau[l][i]==0)
 	i++;
       if (plateau[l][i]==1)
@@ -82,7 +89,7 @@ void	ask(int plateau[4][7])
     }
 }
 
-void	result(int plateau[4][7])
+void	result(int *end, int plateau[4][7])
 {
   int	l; //ligne
   int	n; //numero
@@ -107,26 +114,33 @@ void	result(int plateau[4][7])
     }
   if (i == 28)
     {
-    printf("\n\n##FIN!##\n\n");
-    return EXIT_SUCCESS;
+      printf("\n\n##FIN!##\n\n");
+      *end = 1;
     }
 }
 
-void	ia(int plateau[4][7])
+void	IA_Play(int *buf, int plateau[4][7])
 {
   int	l;
   int	n;
-  
-  my_putstr("\nA l'IA de jouer !\n");
-  l = 4;
-  l = l-1;
-  n = 3;
-  
-  int i;
-  
+  int	i;
+
+  my_putstr("\nNow let's me play ...\n");
+  l=1;
+  n=2;
   i=0;
+  *buf = 7;
   while(n>0)
     {
+      if (l == 4)
+	{
+	  l = 0;
+	}
+      if (i == 8)
+	{
+	  i=0;
+	  l++;
+	}
       if (plateau[l][i]==0)
 	i++;
       if (plateau[l][i]==1)
@@ -136,5 +150,7 @@ void	ia(int plateau[4][7])
 	  n--;
 	}
     }
-  
 }
+
+
+
