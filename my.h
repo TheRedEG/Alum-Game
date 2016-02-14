@@ -7,9 +7,9 @@
 
 //main
 void		display(int plateau[4][7]);
-void		ask(int plateau[4][7]);
+void		ask(int *buffer,int plateau[4][7]);
 void		result(int *end, int plateau[4][7]);
-void		IA_Play(int *buf, int plateau[4][7]);
+void		IA_Play(int *buffer,int *bufia, int plateau[4][7]);
 
 void		my_putchar(char a);
 void		my_putstr(char *str);

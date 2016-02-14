@@ -5,9 +5,10 @@ void	main()
   int		i;
   int		x;
   int		*end;
-  int		*buf;
-
-  buf = 1;
+  int		*bufia;
+  int		*buffer;
+  
+  bufia = 1;
   i = 0;
   x = 1;
   //Creation plateau
@@ -20,17 +21,20 @@ void	main()
   display(plateau);
   while(end != 1)
     {
-      ask(plateau);
+      ask(&buffer,plateau);
       display(plateau);
       result(&end,plateau);
+      if (end == 1)
+	my_putstr("Vous avez perdu !\n");
       if (end != 1)
 	{
-	  IA_Play(&buf,plateau);
+	  IA_Play(&buffer,&bufia,plateau);
 	  display(plateau);
 	  result(&end,plateau);
+	  if (end == 1)
+	    my_putstr("Vous avez gagné !\n");
 	}
     }
-  my_putstr("##The End!##");
 }
 
 void	display(int plateau[4][7])
@@ -49,7 +53,7 @@ void	display(int plateau[4][7])
 	  if (plateau[l][n]==0)
 	    my_putchar(' ');
 	  if (plateau[l][n]==1)
-	    my_putchar('I');
+	    my_putchar('|');
 	  n++;
 	}
       my_putchar('*');
@@ -59,21 +63,24 @@ void	display(int plateau[4][7])
   my_putstr("*********\n");
 }
 
-void	ask(int plateau[4][7])
+void	ask(int *buffer, int plateau[4][7])
 {
+  int	i;
   int	l;
   int	n;
-
+  
   my_putstr("\nVotre tour de jouer !\n");
   my_putstr("\nQuelle ligne\n");
   scanf("%d",&l);
   my_putstr("\nCombien\n");
   scanf("%d", &n);
   l = l-1;
-  
-  int i;
-  
   i=0;
+
+  if(l>3 || l<0)
+      my_error("Vous avez rentrez un ligne inexistante !\n");
+  if (n > 3 || n == buffer )
+    my_error("Vous avez entrez plus de 3 alumettes ! \n");
   while(n>0)
     {
       if (n == 42)
@@ -87,12 +94,13 @@ void	ask(int plateau[4][7])
 	  n--;
 	}
     }
+  *buffer=n;
 }
 
 void	result(int *end, int plateau[4][7])
 {
-  int	l; //ligne
-  int	n; //numero
+  int	l;
+  int	n;
   int	i;
   
   i = 0;
@@ -119,7 +127,7 @@ void	result(int *end, int plateau[4][7])
     }
 }
 
-void	IA_Play(int *buf, int plateau[4][7])
+void	IA_Play(int *buffer, int *bufia, int plateau[4][7])
 {
   int	l;
   int	n;
@@ -129,7 +137,14 @@ void	IA_Play(int *buf, int plateau[4][7])
   l=1;
   n=2;
   i=0;
-  *buf = 7;
+  *bufia = 7;
+  if (n == buffer)
+    {
+      if (buffer == 1)
+	n++;
+      if (buffer == 2)
+	n++;
+    }
   while(n>0)
     {
       if (l == 4)
@@ -150,7 +165,5 @@ void	IA_Play(int *buf, int plateau[4][7])
 	  n--;
 	}
     }
+  *buffer=n;
 }
-
-
-
