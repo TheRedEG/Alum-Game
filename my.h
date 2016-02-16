@@ -6,8 +6,9 @@
 #include <stdio.h>
 
 //main
+void		start(int plateau[4][7]);
 void		display(int plateau[4][7]);
-void		ask(int *buffer,int plateau[4][7]);
+void		player(int *buffer,int plateau[4][7]);
 void		result(int *end, int plateau[4][7]);
 void		IA_Play(int *buffer,int *bufia, int plateau[4][7]);
 

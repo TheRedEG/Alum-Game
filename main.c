@@ -2,37 +2,37 @@
 
 void	main()
 {
-  int		i;
-  int		x;
+  int	plateau[4][7] = {{0,0,0,1,0,0,0},
+			 {0,0,1,1,1,0,0},
+			 {0,1,1,1,1,1,0},
+			 {1,1,1,1,1,1,1}};
+  
+  my_putstr("\n");
+  display(plateau);
+  start(plateau);
+}
+
+void	start(int plateau[4][7])
+{
   int		*end;
   int		*bufia;
   int		*buffer;
   
   bufia = 1;
-  i = 0;
-  x = 1;
-  //Creation plateau
-  int	plateau[4][7] = {{0,0,0,1,0,0,0},
-			 {0,0,1,1,1,0,0},
-			 {0,1,1,1,1,1,0},
-			 {1,1,1,1,1,1,1}};
-  //Debut jeu
-  my_putstr("\n##START##\n");
-  display(plateau);
   while(end != 1)
     {
-      ask(&buffer,plateau);
+      player(&buffer,plateau);
       display(plateau);
       result(&end,plateau);
       if (end == 1)
-	my_putstr("Vous avez perdu !\n");
+	my_putstr("You lost, too bad..\n");
       if (end != 1)
 	{
 	  IA_Play(&buffer,&bufia,plateau);
 	  display(plateau);
 	  result(&end,plateau);
 	  if (end == 1)
-	    my_putstr("Vous avez gagné !\n");
+	    my_putstr("I lost.. snif.. but I'll get you next time !!\n");
 	}
     }
 }
@@ -63,24 +63,23 @@ void	display(int plateau[4][7])
   my_putstr("*********\n");
 }
 
-void	ask(int *buffer, int plateau[4][7])
+void	player(int *buffer, int plateau[4][7])
 {
   int	i;
   int	l;
   int	n;
   
-  my_putstr("\nVotre tour de jouer !\n");
-  my_putstr("\nQuelle ligne\n");
+  my_putstr("\nYour turn:\nLine: ");
   scanf("%d",&l);
-  my_putstr("\nCombien\n");
+  my_putstr("\nMatches:");
   scanf("%d", &n);
   l = l-1;
   i=0;
-
   if(l>3 || l<0)
-      my_error("Vous avez rentrez un ligne inexistante !\n");
-  if (n > 3 || n == buffer )
-    my_error("Vous avez entrez plus de 3 alumettes ! \n");
+    my_error("Error : this line is out of range\n");
+  if (n > 3 || n == buffer || n<=0)
+    my_error("Error : invalid number of matches\n");
+  *buffer=n;
   while(n>0)
     {
       if (n == 42)
@@ -94,7 +93,6 @@ void	ask(int *buffer, int plateau[4][7])
 	  n--;
 	}
     }
-  *buffer=n;
 }
 
 void	result(int *end, int plateau[4][7])
@@ -122,7 +120,7 @@ void	result(int *end, int plateau[4][7])
     }
   if (i == 28)
     {
-      printf("\n\n##FIN!##\n\n");
+      printf("\n\n");
       *end = 1;
     }
 }
@@ -133,18 +131,20 @@ void	IA_Play(int *buffer, int *bufia, int plateau[4][7])
   int	n;
   int	i;
 
-  my_putstr("\nNow let's me play ...\n");
+  my_putstr("\nAI's turn\n");
   l=1;
   n=2;
   i=0;
   *bufia = 7;
-  if (n == buffer)
+  if (n == *buffer)
     {
-      if (buffer == 1)
+      if (*buffer == 1)
 	n++;
-      if (buffer == 2)
+      if (*buffer == 2)
 	n++;
     }
+  *buffer=n;
+  printf("AI removed %d match(es) from line %d\n",n,l);
   while(n>0)
     {
       if (l == 4)
@@ -165,5 +165,4 @@ void	IA_Play(int *buffer, int *bufia, int plateau[4][7])
 	  n--;
 	}
     }
-  *buffer=n;
 }
