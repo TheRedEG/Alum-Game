@@ -15,20 +15,19 @@ void	main()
 void	start(int plateau[4][7])
 {
   int		*end;
-  int		*bufia;
-  int		*buffer;
+  int		*buf;
   
   bufia = 1;
   while(end != 1)
     {
-      player(&buffer,plateau);
+      player(plateau);
       display(plateau);
       result(&end,plateau);
       if (end == 1)
 	my_putstr("You lost, too bad..\n");
       if (end != 1)
 	{
-	  IA_Play(&buffer,&bufia,plateau);
+	  IA_Play(&buf,plateau);
 	  display(plateau);
 	  result(&end,plateau);
 	  if (end == 1)
@@ -63,7 +62,7 @@ void	display(int plateau[4][7])
   my_putstr("*********\n");
 }
 
-void	player(int *buffer, int plateau[4][7])
+void	player(int plateau[4][7])
 {
   int	i;
   int	l;
@@ -77,9 +76,8 @@ void	player(int *buffer, int plateau[4][7])
   i=0;
   if(l>3 || l<0)
     my_error("Error : this line is out of range\n");
-  if (n > 3 || n == buffer || n<=0)
+  if (n<=0)
     my_error("Error : invalid number of matches\n");
-  *buffer=n;
   while(n>0)
     {
       if (n == 42)
@@ -125,7 +123,7 @@ void	result(int *end, int plateau[4][7])
     }
 }
 
-void	IA_Play(int *buffer, int *bufia, int plateau[4][7])
+void	IA_Play(int *buf, int plateau[4][7])
 {
   int	l;
   int	n;
@@ -135,15 +133,7 @@ void	IA_Play(int *buffer, int *bufia, int plateau[4][7])
   l=1;
   n=2;
   i=0;
-  *bufia = 7;
-  if (n == *buffer)
-    {
-      if (*buffer == 1)
-	n++;
-      if (*buffer == 2)
-	n++;
-    }
-  *buffer=n;
+  *buf = 7;
   printf("AI removed %d match(es) from line %d\n",n,l);
   while(n>0)
     {
