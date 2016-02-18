@@ -3,10 +3,12 @@ CC=		gcc -g -W -Wall -Wextra
 
 RM=		rm -rfv
 
-SRC=		main.c \
-		basics.c \
+SRC=		basics.c \
 		display.c \
-		ask.c
+		ask.c \
+		ia.c \
+		game.c \
+		main.c
 
 OBJ		= $(SRC:.c=.o
 
