@@ -35,7 +35,6 @@ void	start(int plateau[4][7])
     }
 }
 
-
 void	player(int plateau[4][7])
 {
   int	i;
@@ -44,6 +43,7 @@ void	player(int plateau[4][7])
   
   my_putstr("\nYour turn:\nLine: ");
   l = ask();
+  my_put_nbr(l);
   my_putstr("Matches:");
   n = ask();
   l = l-1;
@@ -57,6 +57,40 @@ void	player(int plateau[4][7])
     {
       if (n == 42)
 	n = 0;
+      if (plateau[l][i]==0)
+	i++;
+      if (plateau[l][i]==1)
+	{
+	  plateau[l][i]=0;
+	  i++;
+	  n--;
+	}
+    }
+}
+
+void	IA_Play(int *buf, int plateau[4][7])
+{
+  int	l;
+  int	n;
+  int	i;
+
+  my_putstr("\nAI's turn\n");
+  l=1;
+  n=2;
+  i=0;
+  *buf = 7;
+  ia_say(l,n);
+  while(n>0)
+    {
+      if (l == 4)
+	{
+	  l = 0;
+	}
+      if (i == 8)
+	{
+	  i=0;
+	  l++;
+	}
       if (plateau[l][i]==0)
 	i++;
       if (plateau[l][i]==1)
@@ -93,41 +127,7 @@ void	result(int *end, int plateau[4][7])
     }
   if (i == 28)
     {
-      printf("\n\n");
+      my_putstr("\n\n");
       *end = 1;
-    }
-}
-
-void	IA_Play(int *buf, int plateau[4][7])
-{
-  int	l;
-  int	n;
-  int	i;
-
-  my_putstr("\nAI's turn\n");
-  l=1;
-  n=2;
-  i=0;
-  *buf = 7;
-  ia_say(l,n);
-  while(n>0)
-    {
-      if (l == 4)
-	{
-	  l = 0;
-	}
-      if (i == 8)
-	{
-	  i=0;
-	  l++;
-	}
-      if (plateau[l][i]==0)
-	i++;
-      if (plateau[l][i]==1)
-	{
-	  plateau[l][i]=0;
-	  i++;
-	  n--;
-	}
     }
 }

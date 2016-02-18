@@ -20,7 +20,7 @@ void	display(int plateau[4][7])
 	  n++;
 	}
       my_putchar('*');
-      my_putchar('\n\n');
+      my_putchar('\n');
       l++;
     }
   my_putstr("*********\n");

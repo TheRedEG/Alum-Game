@@ -5,7 +5,8 @@ RM=		rm -rfv
 
 SRC=		main.c \
 		basics.c \
-		display.c
+		display.c \
+		ask.c
 
 OBJ		= $(SRC:.c=.o
 
