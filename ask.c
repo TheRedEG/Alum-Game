@@ -1,6 +1,4 @@
-#include <unistd.h>
-#include <sys/types.h>
-#include <stdio.h>
+#include "my.h"
 
 int		negatif(char *str)
 {
@@ -42,7 +40,6 @@ int		my_getnbr(char *str)
       a++;
     }
   b = b * c;
-  printf("%d",b);
   return (b);
 }
 

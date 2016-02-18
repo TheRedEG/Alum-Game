@@ -3,6 +3,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/types.h>
 
 /*main*/
 void		start(int plateau[4][7]);
@@ -16,6 +17,9 @@ void		player_say(int l, int n);
 void		ia_say(int l, int n);
 
 /*ask*/
+int		negatif(char *str);
+int		my_getnbr(char *str);
+int		ask();
 
 /*basics*/
 void		my_putchar(char a);
