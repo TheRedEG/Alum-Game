@@ -4,7 +4,8 @@ CC=		gcc -g -W -Wall -Wextra
 RM=		rm -rfv
 
 SRC=		main.c \
-		basics.c 
+		basics.c \
+		display.c
 
 OBJ		= $(SRC:.c=.o
 

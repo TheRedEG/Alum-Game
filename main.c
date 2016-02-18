@@ -7,7 +7,6 @@ void	main()
 			 {0,1,1,1,1,1,0},
 			 {1,1,1,1,1,1,1}};
   
-  my_putstr("\n");
   display(plateau);
   start(plateau);
 }
@@ -17,7 +16,7 @@ void	start(int plateau[4][7])
   int		*end;
   int		*buf;
   
-  bufia = 1;
+  buf = 1;
   while(end != 1)
     {
       player(plateau);
@@ -36,31 +35,6 @@ void	start(int plateau[4][7])
     }
 }
 
-void	display(int plateau[4][7])
-{
-  int l; //ligne
-  int n; //numero
-  
-  l = 0;
-  my_putstr("*********\n");
-  while(l < 4)
-    {
-      n = 0;
-      my_putchar('*');
-      while(n < 7)
-	{
-	  if (plateau[l][n]==0)
-	    my_putchar(' ');
-	  if (plateau[l][n]==1)
-	    my_putchar('|');
-	  n++;
-	}
-      my_putchar('*');
-      my_putchar('\n\n');
-      l++;
-    }
-  my_putstr("*********\n");
-}
 
 void	player(int plateau[4][7])
 {
@@ -70,10 +44,11 @@ void	player(int plateau[4][7])
   
   my_putstr("\nYour turn:\nLine: ");
   scanf("%d",&l);
-  my_putstr("\nMatches:");
+  my_putstr("Matches:");
   scanf("%d", &n);
   l = l-1;
   i=0;
+  player_say(l,n);
   if(l>3 || l<0)
     my_error("Error : this line is out of range\n");
   if (n<=0)
@@ -134,7 +109,7 @@ void	IA_Play(int *buf, int plateau[4][7])
   n=2;
   i=0;
   *buf = 7;
-  printf("AI removed %d match(es) from line %d\n",n,l);
+  ia_say(l,n);
   while(n>0)
     {
       if (l == 4)
