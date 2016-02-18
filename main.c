@@ -43,9 +43,9 @@ void	player(int plateau[4][7])
   int	n;
   
   my_putstr("\nYour turn:\nLine: ");
-  scanf("%d",&l);
+  l = ask();
   my_putstr("Matches:");
-  scanf("%d", &n);
+  n = ask();
   l = l-1;
   i=0;
   player_say(l,n);

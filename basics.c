@@ -33,3 +33,12 @@ void		my_error(char *str)
   my_putstr(str);
   exit(EXIT_FAILURE);
 }
+
+int		ask()
+{
+  int nread;
+  char buf[2];
+
+  nread = read(0,buf,2);
+  return nread;
+}
