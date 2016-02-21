@@ -1,5 +1,4 @@
 #include "my.h"
-#include <stdio.h>
 
 void	IA_Play(int plateau[4][7], int tab[4][2])
 {
