@@ -9,10 +9,15 @@
 void		result(int *end, int plateau[4][7]);
 void		fill_up(int plateau[4][7]);
 /*game*/
-void		start(int plateau[4][7]);
-void		player(int plateau[4][7]);
-void		IA_Play(int *buf, int plateau[4][7]);
+void		start(int plateau[4][7], int tab[4][2]);
+void		player(int plateau[4][7], int tab[4][2]);
 /*ia*/
+void		IA_Play(int plateau[4][7], int tab[4][2]);
+int		calc_m(int plateau[4][7], int tab[4][2]);
+void		calc_l(int plateau[4][7], int tab[4][2]);
+void		test_ia(int tab[4][2]);
+void		check_player(int plateau[4][7],int tab[4][2]);
+void		rm(int plateau[4][7],int tab[4][2], int line, int all);
 /*display*/
 void		display(int plateau[4][7]);
 void		player_say(int l, int n);

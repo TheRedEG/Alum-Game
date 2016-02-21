@@ -3,32 +3,35 @@
 void	main()
 {
   int	plateau[4][7];
+  int	tab[4][2];
   
   fill_up(plateau);
   display(plateau);
-  start(plateau);
+  start(plateau,tab);
 }
 
 void	fill_up(int plateau[4][7])
 {
-  int	i;
-  int	u;
+  int	line;
+  int	matches;
   
-  i = 0;
-  u = 0;
-  while(i <= 3)
+  line = 0;
+  matches = 0;
+  while(line <= 3)
     {
-      if (u >= 3 - i && u <= 3 + i)
+      if (matches >= 3 - line && matches <= 3 + line)
 	{
-	  plateau[i][u] = 1;
+	  plateau[line][matches] = 1;
 	}
       else
-	plateau[i][u]= 0;
-      u++;
-      if (u >6)
 	{
-	  i++;
-	  u = 0;
+	  plateau[line][matches]= 0;
+	}
+      matches++;
+      if (matches > 6)
+	{
+	  line++;
+	  matches = 0;
 	}
     }
 }

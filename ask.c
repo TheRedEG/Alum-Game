@@ -49,5 +49,7 @@ int	ask()
   char	buf[50];
   read(0,buf,50);
   rep = my_getnbr(buf);
+  if (rep > 7)
+    my_putstr("fuck");
   return rep; 
 }

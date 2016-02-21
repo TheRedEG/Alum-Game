@@ -1,16 +1,14 @@
 #include "my.h"
 
-void	start(int plateau[4][7])
+void	start(int plateau[4][7], int tab[4][2])
 {
   int		end;
-  int		*buf;
   int		*ptr;
 
   ptr = &end;
-  buf = 1;
   while(end != 1)
     {
-      player(plateau);
+      player(plateau,tab);
       display(plateau);
       result(ptr,plateau);
       if (end == 1)
@@ -19,7 +17,7 @@ void	start(int plateau[4][7])
 	}
       if (end != 1)
 	{
-	  IA_Play(&buf,plateau);
+	  IA_Play(plateau,tab);
 	  display(plateau);
 	  result(ptr,plateau);
 	  if (end == 1)
@@ -30,7 +28,7 @@ void	start(int plateau[4][7])
     }
 }
 
-void	player(int plateau[4][7])
+void	player(int plateau[4][7], int tab[4][2])
 {
   int	i;
   int	l;
@@ -43,10 +41,7 @@ void	player(int plateau[4][7])
   player_say(l,n);
   l--;
   i=0;
-  if(l>3 || l<0)
-    my_error("Error : this line is out of range\n");
-  if (n<=0)
-    my_error("Error : invalid number of matches\n");
+  tab[0][1]=l;
   while(n>0)
     {
       if (n == 42)
@@ -62,37 +57,3 @@ void	player(int plateau[4][7])
     }
 }
 
-void	IA_Play(int *buf, int plateau[4][7])
-{
-  int	l;
-  int	n;
-  int	i;
-
-  my_putstr("\nAI's turn\n");
-  l=2;
-  n=2;
-  i=0;
-  *buf = 7;
-  ia_say(l,n);
-  l--;
-  while(n>0)
-    {
-      if (l == 4)
-	{
-	  l = 0;
-	}
-      if (i == 8)
-	{
-	  i=0;
-	  l++;
-	}
-      if (plateau[l][i]==0)
-	i++;
-      if (plateau[l][i]==1)
-	{
-	  plateau[l][i]=0;
-	  i++;
-	  n--;
-	}
-    }
-}
